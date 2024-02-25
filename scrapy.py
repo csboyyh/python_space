@@ -40,7 +40,13 @@ def extract_product_details(product_link):
             if len(cells) == 2:
                 detail_name = cells[0].text.strip()
                 detail_value = cells[1].text.strip()
-                details[detail_name] = detail_value
+                # Check if the detail_name already exists in the dictionary
+                if detail_name in details:
+                    # If it does, append the new value
+                    details[detail_name] += "; " + detail_value
+                else:
+                    # Otherwise, just add the detail_name and detail_value
+                    details[detail_name] = detail_value
 
     return details
 
